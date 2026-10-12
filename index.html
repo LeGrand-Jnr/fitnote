@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>FitNote — Digital Measurement Book for Fashion Designers</title>
+  <meta name="description" content="Digital measurement book for Ghanaian fashion designers and seamstresses. Store customer body measurements safely and find them in under 10 seconds.">
+  <meta name="theme-color" content="#3B2418">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon / Mannequin Icon -->
+  <link rel="icon" type="image/svg+xml" href="assets/mannequin.svg">
+</head>
+<body>
+
+  <!-- Desktop Preview Toolbar (for testing & designer review on laptops) -->
+  <div class="desktop-preview-bar">
+    <span>📱 FitNote Preview</span>
+    <button class="preview-toggle-btn" id="btn-toggle-wide-mode">Switch to Fullscreen</button>
+  </div>
+
+  <div id="app">
+
+    <!-- ================= VIEW 1: SPLASH / WELCOME SCREEN ================= -->
+    <section id="view-splash" class="view splash-view view-no-bottom-nav">
+      <div></div>
+      <div class="splash-content-center">
+        <img src="assets/mannequin.svg" alt="FitNote Mannequin" class="splash-mannequin-logo">
+        <h1 class="splash-brand-title">FitNote</h1>
+        <div class="splash-tagline">Your Measurements.<br>Always With You.</div>
+        <p class="splash-description">
+          A simple way to keep your customers' body measurements safe, organized, and accessible even without internet.
+        </p>
+      </div>
+
+      <div class="splash-actions">
+        <button id="btn-splash-get-started" class="btn-splash-primary">Get Started</button>
+        <button id="btn-splash-login" class="splash-login-link">I already have an account</button>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: LOGIN SCREEN ================= -->
+    <section id="view-login" class="view auth-page-container view-no-bottom-nav">
+      <div class="auth-header">
+        <img src="assets/mannequin.svg" alt="FitNote" class="auth-logo">
+        <h2 class="auth-title">FitNote</h2>
+        <p class="auth-subtitle">Welcome back! Sign in to continue</p>
+      </div>
+
+      <div class="auth-card">
+        <form id="form-login">
+          <div class="form-group">
+            <label class="form-label">Email or Phone Number</label>
+            <div class="input-with-icon">
+              <span class="input-icon-left">✉️</span>
+              <input type="text" id="login-input-email" class="form-input" placeholder="ama@fashion.com or 024 XXX XXXX" required value="ama@fitnote.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="input-with-icon">
+              <span class="input-icon-left">🔒</span>
+              <input type="password" id="login-input-password" class="form-input" placeholder="••••••••" required value="password123">
+              <button type="button" class="input-icon-right" id="btn-toggle-password" title="Toggle password">👁</button>
+            </div>
+            <a href="javascript:void(0)" onclick="alert('Password reset link will be sent to your registered email.')" class="auth-forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-submit-login">Login</button>
+        </form>
+
+        <div class="auth-footer">
+          Don't have an account? <button type="button" class="auth-link-btn" onclick="location.hash='#register'">Create Account</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 3: REGISTRATION SCREEN ================= -->
+    <section id="view-register" class="view auth-page-container view-no-bottom-nav">
+      <div class="auth-header">
+        <img src="assets/mannequin.svg" alt="FitNote" class="auth-logo">
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-subtitle">Keep your fashion client book safe forever</p>
+      </div>
+
+      <div class="auth-card">
+        <form id="form-register">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="reg-input-name" class="form-input" placeholder="e.g. Ama Mensah" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="reg-input-email" class="form-input" placeholder="ama@fashion.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Create Password <span class="required">*</span></label>
+            <input type="password" id="reg-input-pass" class="form-input" placeholder="Minimum 6 characters" required minlength="6">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Confirm Password <span class="required">*</span></label>
+            <input type="password" id="reg-input-confirm" class="form-input" placeholder="Re-enter password" required minlength="6">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
+
+        <div class="auth-footer">
+          Already have an account? <button type="button" class="auth-link-btn" onclick="location.hash='#login'">Log In</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 4: BUSINESS SETUP ================= -->
+    <section id="view-setup" class="view auth-page-container view-no-bottom-nav">
+      <div class="auth-header">
+        <h2 class="auth-title">Welcome! 👋🏾</h2>
+        <p class="auth-subtitle">Let's set up your fashion brand</p>
+      </div>
+
+      <div class="auth-card">
+        <form id="form-setup">
+          <div class="form-group">
+            <label class="form-label">Business / Brand Name</label>
+            <input type="text" id="setup-input-biz" class="form-input" placeholder="e.g. Ama's Fashion" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" id="setup-input-name" class="form-input" placeholder="e.g. Ama Mensah" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What do you make?</label>
+            <div class="category-checkboxes">
+              <label class="category-option">
+                <input type="radio" name="setup_category" value="Women's Wear" checked>
+                <span class="category-option-text">👗 Women's Wear (Gowns, Kaba & Slit)</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="setup_category" value="Men's Wear">
+                <span class="category-option-text">👔 Men's Wear (Kaftan, Shirts, Suits)</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="setup_category" value="Children's Wear">
+                <span class="category-option-text">🧸 Children's Wear</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="setup_category" value="Mixed">
+                <span class="category-option-text">✨ Mixed / All Categories</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Continue to Dashboard</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 5: DASHBOARD ================= -->
+    <section id="view-dashboard" class="view active-view">
+      <header class="dashboard-header">
+        <div class="header-greeting-row">
+          <div>
+            <h1 class="greeting-title" id="dashboard-greeting">Good morning, Ama! 👋🏾</h1>
+            <div class="business-subtitle" id="dashboard-business-name">Ama's Fashion</div>
+          </div>
+          <button class="nav-icon-btn" onclick="location.hash='#settings'" title="Settings">
+            🔔
+          </button>
+        </div>
+        <div class="sync-status-pill sync-status-indicator">
+          <span>✓</span> Synced
+        </div>
+      </header>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-number" id="stat-total-customers">0</div>
+          <div class="stat-label">Customers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📏</div>
+          <div class="stat-number" id="stat-recently-measured">0</div>
+          <div class="stat-label">Measured (30d)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✨</div>
+          <div class="stat-number" id="stat-this-week">0</div>
+          <div class="stat-label">This Week</div>
+        </div>
+      </div>
+
+      <!-- Quick Actions Grid -->
+      <div class="quick-actions-section">
+        <div class="section-title-row">
+          <h2 class="section-title">Quick Actions</h2>
+        </div>
+        <div class="quick-actions-grid">
+          <div class="action-tile" onclick="location.hash='#add-customer'">
+            <div class="action-tile-icon">➕</div>
+            <div class="action-tile-text">
+              <span class="action-tile-title">Add Customer</span>
+              <span class="action-tile-subtitle">New client</span>
+            </div>
+          </div>
+
+          <div class="action-tile" onclick="location.hash='#customers'">
+            <div class="action-tile-icon">📏</div>
+            <div class="action-tile-text">
+              <span class="action-tile-title">Record Fit</span>
+              <span class="action-tile-subtitle">Take measures</span>
+            </div>
+          </div>
+
+          <div class="action-tile" onclick="location.hash='#customers'">
+            <div class="action-tile-icon">📋</div>
+            <div class="action-tile-text">
+              <span class="action-tile-title">Client Book</span>
+              <span class="action-tile-subtitle">All profiles</span>
+            </div>
+          </div>
+
+          <div class="action-tile" onclick="location.hash='#settings'">
+            <div class="action-tile-icon">☁️</div>
+            <div class="action-tile-text">
+              <span class="action-tile-title">Backup & Sync</span>
+              <span class="action-tile-subtitle">Cloud safety</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prominent Fast Search -->
+      <div style="padding: 0 20px;">
+        <div class="search-container">
+          <span class="search-icon-left">🔍</span>
+          <input type="text" id="dashboard-search-input" class="search-input" placeholder="Search customers by name or phone...">
+        </div>
+      </div>
+
+      <!-- Recent Customers Section -->
+      <div class="quick-actions-section" style="margin-bottom: 12px;">
+        <div class="section-title-row">
+          <h2 class="section-title">Recent Customers</h2>
+          <a href="#customers" class="section-link">View All ›</a>
+        </div>
+      </div>
+
+      <div class="customer-list" id="dashboard-recent-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ================= VIEW 6: CUSTOMERS LIST & SEARCH ================= -->
+    <section id="view-customers" class="view">
+      <header class="top-nav">
+        <h1 class="top-nav-title">
+          <span>👥</span> Customers
+        </h1>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="badge badge-cream" id="customers-count-badge">0 customers</span>
+          <button class="nav-icon-btn" onclick="location.hash='#add-customer'" title="Add Customer" style="background-color:var(--color-cream); font-size:1.4rem; color:var(--color-accent);">
+            +
+          </button>
+        </div>
+      </header>
+
+      <div style="padding: 16px 20px 8px 20px;">
+        <div class="search-container" style="margin-bottom: 10px;">
+          <span class="search-icon-left">🔍</span>
+          <input type="text" id="customers-search-input" class="search-input" placeholder="Search by name or phone (e.g. Ama)...">
+        </div>
+        <div class="sync-status-indicator" style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:8px;">
+          ✓ Synced with Cloud
+        </div>
+      </div>
+
+      <div class="customer-list" id="customers-full-list">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- ================= VIEW 7: ADD / EDIT CUSTOMER ================= -->
+    <section id="view-customer-form" class="view">
+      <header class="top-nav">
+        <button class="nav-icon-btn" onclick="window.history.back()">‹</button>
+        <h2 class="top-nav-title" id="customer-form-title">Add Customer</h2>
+        <div style="width:40px;"></div>
+      </header>
+
+      <div style="padding: 20px;">
+        <div class="card">
+          <form id="form-add-customer">
+            <div class="form-group">
+              <label class="form-label">Full Name <span class="required">*</span></label>
+              <input type="text" id="cust-input-name" class="form-input" placeholder="e.g. Ama Mensah" required>
+              <span class="form-hint">Enter first and last name for easy search.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="cust-input-phone" class="form-input" placeholder="e.g. 024 XXX XXXX" required>
+              <span class="form-hint">Identifies the customer if names are duplicated.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gender</label>
+              <select id="cust-input-gender" class="form-select">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Old Notebook / Page Reference (Optional)</label>
+              <input type="text" id="cust-input-notebook" class="form-input" placeholder="e.g. 2024 Black Book • Page 14">
+              <span class="form-hint">Helps you reference old physical books while transitioning to FitNote.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Customer Notes (Optional)</label>
+              <textarea id="cust-input-notes" class="form-textarea" placeholder="e.g. Prefers loose fitting, wears corsets for wedding gowns, likes Ankara..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:10px;">Save Customer</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 8: CUSTOMER PROFILE ================= -->
+    <section id="view-customer-profile" class="view">
+      <header class="top-nav">
+        <button class="nav-icon-btn" onclick="location.hash='#customers'">‹</button>
+        <h2 class="top-nav-title">Customer Profile</h2>
+        <a href="javascript:void(0)" id="btn-profile-edit-customer" class="nav-icon-btn" title="Edit Customer">✏️</a>
+      </header>
+
+      <!-- Profile Hero Card -->
+      <div class="profile-hero-card">
+        <div class="profile-avatar-large" id="profile-avatar">AM</div>
+        <h1 class="profile-name" id="profile-name">Ama Mensah</h1>
+        <a href="#" class="profile-phone-btn" id="profile-phone">📞 024 123 4567</a>
+        <div class="profile-tags-row" id="profile-tags-row">
+          <!-- Gender & notes badges -->
+        </div>
+      </div>
+
+      <!-- Profile Tabs -->
+      <div class="tabs-header">
+        <button class="tab-btn active">Measurements</button>
+        <button class="tab-btn" onclick="alert('Orders & Invoicing will be available in Version 2.')">Orders (v2)</button>
+        <button class="tab-btn" onclick="document.getElementById('profile-notes-card').scrollIntoView({behavior:'smooth'})">Notes</button>
+      </div>
+
+      <div style="padding: 0 20px;">
+        <!-- Latest Measurement Card -->
+        <div class="card" id="profile-latest-measurement-card">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Measurement History Banner -->
+        <a href="#" id="btn-profile-history-link" class="card" style="display:flex; justify-content:space-between; align-items:center; text-decoration:none; color:inherit;">
+          <div>
+            <div style="font-weight:700; color:var(--color-primary); font-size:1rem;">Measurement History</div>
+            <div style="font-size:0.8rem; color:var(--color-text-muted);">View previous records over time</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="badge badge-cream" id="profile-history-count">0 records</span>
+            <span style="font-size:1.2rem; color:var(--color-text-light);">›</span>
+          </div>
+        </a>
+
+        <!-- Notes Card -->
+        <div class="card" id="profile-notes-card">
+          <div style="font-weight:700; color:var(--color-primary); margin-bottom:6px;">Client Notes</div>
+          <p id="profile-customer-notes" style="font-size:0.92rem; color:var(--color-text-muted);"></p>
+        </div>
+
+        <!-- Add Measurement Button -->
+        <a href="#" id="btn-profile-add-meas" class="btn btn-primary" style="margin-top:8px; margin-bottom:24px;">
+          📏 + Add Measurement
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 9: ADD / EDIT MEASUREMENT ================= -->
+    <section id="view-measurement-form" class="view">
+      <header class="top-nav">
+        <button class="nav-icon-btn" onclick="window.history.back()">‹</button>
+        <h2 class="top-nav-title" id="meas-form-title">Add Measurement</h2>
+        <div style="width:40px;"></div>
+      </header>
+
+      <div style="padding: 16px 20px;">
+        <div style="margin-bottom: 12px;">
+          <span style="font-size:0.85rem; color:var(--color-text-muted);">Customer:</span>
+          <h2 style="font-size:1.25rem; color:var(--color-primary);" id="meas-form-customer-name">Ama Mensah</h2>
+        </div>
+
+        <!-- Step 1: Measurement Template Selector -->
+        <label class="form-label" style="margin-bottom:6px;">Select Garment Template</label>
+        <div class="template-chips-row" id="template-chips-container">
+          <!-- Dynamically populated chips -->
+        </div>
+
+        <!-- Step 2: Measurement Unit Toggle -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <label class="form-label">Measurement Unit</label>
+          <div class="unit-toggle-group">
+            <button type="button" class="unit-toggle-btn active" data-unit="inches">Inches (")</button>
+            <button type="button" class="unit-toggle-btn" data-unit="cm">Centimeters (cm)</button>
+          </div>
+        </div>
+
+        <form id="form-add-measurement">
+          <!-- Step 3: Measurement Input Fields Grid -->
+          <div class="measurement-inputs-grid" id="measurement-fields-container">
+            <!-- Dynamically populated inputs -->
+          </div>
+
+          <!-- Measurement Session Date -->
+          <div class="form-group">
+            <label class="form-label">Measurement Date</label>
+            <input type="date" id="meas-input-date" class="form-input" required>
+          </div>
+
+          <!-- Session Notes -->
+          <div class="form-group">
+            <label class="form-label">Garment Notes (Optional)</label>
+            <textarea id="meas-input-notes" class="form-textarea" placeholder="e.g. Wedding guest outfit, client wore shapewear, slightly loose fitting..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top:8px;">Save Measurements</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 10: MEASUREMENT DETAIL ================= -->
+    <section id="view-measurement-detail" class="view">
+      <header class="top-nav">
+        <button class="nav-icon-btn" onclick="window.history.back()">‹</button>
+        <h2 class="top-nav-title">Measurements</h2>
+        <a href="#" id="detail-btn-edit" class="nav-icon-btn" title="Edit">✏️</a>
+      </header>
+
+      <div style="padding: 16px 20px;">
+        <!-- Customer Banner -->
+        <div class="card" style="margin-bottom:14px; background:linear-gradient(180deg, #FFFFFF 0%, var(--color-cream-light) 100%);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+              <h2 id="detail-customer-name" style="font-size:1.25rem;">Ama Mensah</h2>
+              <div id="detail-customer-meta" style="font-size:0.85rem; color:var(--color-text-muted); margin-top:2px;">Female • 12 Sept 2026</div>
+            </div>
+            <span class="badge badge-accent" id="detail-type-badge">Women's Dress</span>
+          </div>
+          <div style="margin-top:8px;">
+            <span class="badge badge-cream" id="detail-unit-badge">Inches (")</span>
+          </div>
+        </div>
+
+        <!-- Full Measurement Numbers -->
+        <div class="card">
+          <h3 style="font-size:1rem; margin-bottom:10px;">Recorded Body Measurements</h3>
+          <div class="measurements-grid" id="detail-measurements-grid">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Garment Notes -->
+        <div class="card">
+          <h3 style="font-size:1rem; margin-bottom:6px;">Notes</h3>
+          <p id="detail-notes" style="font-size:0.92rem; color:var(--color-text-muted);"></p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex; gap:12px; margin-top:14px;">
+          <a href="#" id="detail-btn-history" class="btn btn-primary">Measurement History</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 11: MEASUREMENT HISTORY TIMELINE ================= -->
+    <section id="view-history" class="view">
+      <header class="top-nav">
+        <button class="nav-icon-btn" onclick="window.history.back()">‹</button>
+        <h2 class="top-nav-title">Measurement History</h2>
+        <div style="width:40px;"></div>
+      </header>
+
+      <div style="padding: 16px 20px 8px 20px;">
+        <h2 id="history-customer-name" style="font-size:1.2rem; color:var(--color-primary); margin-bottom:4px;">Ama Mensah's History</h2>
+        <p style="font-size:0.85rem; color:var(--color-text-muted);">
+          Permanent record over time. Older measurements are never overwritten.
+        </p>
+      </div>
+
+      <div id="history-timeline-container">
+        <!-- Rendered timeline items -->
+      </div>
+
+      <div style="padding: 16px 20px;">
+        <a href="#" id="btn-history-add-new" class="btn btn-primary">+ Add New Measurement Record</a>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 12: SETTINGS & BACKUP ================= -->
+    <section id="view-settings" class="view">
+      <header class="top-nav">
+        <h1 class="top-nav-title">⚙️ Settings & Backup</h1>
+      </header>
+
+      <div style="padding: 20px;">
+        <!-- Designer Profile Summary -->
+        <div class="card">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div class="avatar-circle" style="background-color:var(--color-accent); width:50px; height:50px; font-size:1.2rem;">🧵</div>
+            <div>
+              <div style="font-weight:700; font-size:1.1rem; color:var(--color-primary);" id="settings-designer-name">Ama Mensah</div>
+              <div style="font-size:0.85rem; color:var(--color-accent);" id="settings-biz-name">Ama's Fashion</div>
+              <div style="font-size:0.75rem; color:var(--color-text-light);" id="settings-email">ama@fitnote.com</div>
+            </div>
+          </div>
+          <div class="sync-status-indicator" style="font-size:0.85rem; font-weight:600;">
+            ✓ Synced with Cloud
+          </div>
+        </div>
+
+        <!-- Data Backup & Cloud Sync Card -->
+        <div class="card">
+          <h3 style="font-size:1rem; margin-bottom:8px;">☁️ Data Safety & Notebook Backup</h3>
+          <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:14px;">
+            Never lose customer measurements if your phone is lost, replaced, or damaged.
+          </p>
+
+          <button id="btn-export-backup" class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:10px;">
+            📥 Export Backup File (.json)
+          </button>
+
+          <label class="btn btn-outline btn-sm" style="width:100%; cursor:pointer;">
+            📤 Restore from Backup File
+            <input type="file" id="input-restore-file" accept=".json" style="display:none;">
+          </label>
+        </div>
+
+        <!-- Demo Data Testing Card -->
+        <div class="card">
+          <h3 style="font-size:1rem; margin-bottom:6px;">🇬🇭 Sample Ghanaian Data</h3>
+          <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:12px;">
+            Load sample Ghanaian customers (Ama Mensah, Kofi Boateng, Serwaa Gyan) to test all features.
+          </p>
+          <button id="btn-reset-demo-data" class="btn btn-secondary btn-sm" style="width:100%;">
+            Load Sample Data
+          </button>
+        </div>
+
+        <!-- Logout Action -->
+        <div style="margin-top:20px;">
+          <button id="btn-logout" class="btn btn-danger-outline">Log Out</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FIXED BOTTOM NAVIGATION BAR ================= -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <a href="#dashboard" class="bottom-nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="#customers" class="bottom-nav-item">
+        <span class="nav-icon">👥</span>
+        <span>Customers</span>
+      </a>
+      <a href="#customers" class="bottom-nav-item">
+        <span class="nav-icon">📏</span>
+        <span>Measures</span>
+      </a>
+      <a href="#settings" class="bottom-nav-item">
+        <span class="nav-icon">⚙️</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <!-- Floating Action Button for Quick Add -->
+    <button class="fab-btn" onclick="location.hash='#add-customer'" title="Add Customer">+</button>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+  </div>
+
+  <!-- Application Controller (Universal, Offline-Ready, No Build Needed) -->
+  <script src="js/fitnote.js"></script>
+</body>
+</html>

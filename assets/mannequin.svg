@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Mannequin Neck Finial -->
+  <circle cx="50" cy="14" r="3.5" fill="#D9B38C" stroke="#3B2418" stroke-width="1.5" />
+  <path d="M47 17.5 H53 V21 H47 Z" fill="#D9B38C" stroke="#3B2418" stroke-width="1.2" />
+
+  <!-- Mannequin Torso Body -->
+  <path d="M44 21 
+           C41 24, 34 26, 34 32
+           C34 38, 41 42, 41 48
+           C41 54, 33 60, 33 66
+           C33 69, 42 71, 50 71
+           C58 71, 67 69, 67 66
+           C67 60, 59 54, 59 48
+           C59 42, 66 38, 66 32
+           C66 26, 59 24, 56 21
+           Z" 
+        fill="#F8F1E7" 
+        stroke="#3B2418" 
+        stroke-width="2.5" 
+        stroke-linejoin="round" />
+
+  <!-- Tailor Seam Lines -->
+  <path d="M50 21 V71" stroke="#A66A3F" stroke-width="1.2" stroke-dasharray="2 2" />
+  <path d="M37 36 C42 39, 58 39, 63 36" stroke="#D9B38C" stroke-width="1.2" />
+  <path d="M41 48 C45 50, 55 50, 59 48" stroke="#D9B38C" stroke-width="1.2" />
+
+  <!-- Mannequin Wooden Stand Pole -->
+  <rect x="48.5" y="71" width="3" height="20" rx="1.5" fill="#3B2418" />
+
+  <!-- Tripod Stand Legs -->
+  <path d="M50 85 L39 96" stroke="#3B2418" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M50 85 L61 96" stroke="#3B2418" stroke-width="2.5" stroke-linecap="round" />
+  <circle cx="50" cy="85" r="2.5" fill="#A66A3F" />
+  
+  <!-- Subtle Measuring Tape Accent Curve -->
+  <path d="M28 42 C24 52, 28 62, 38 68" stroke="#D9B38C" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.8" />
+  <path d="M72 40 C76 50, 72 60, 62 66" stroke="#D9B38C" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.8" />
+</svg>
